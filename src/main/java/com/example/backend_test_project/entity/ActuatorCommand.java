@@ -17,16 +17,15 @@ public class ActuatorCommand {
     private String actuator;
 
     @Column(name = "command_value")
-    private double value;
+    private String value;
 
     private boolean executed = false;
 
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    // Required blank constructor for JPA
     public ActuatorCommand() {}
 
-    // Getters and setters
+    // getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -36,8 +35,8 @@ public class ActuatorCommand {
     public String getActuator() { return actuator; }
     public void setActuator(String actuator) { this.actuator = actuator; }
 
-    public double getValue() { return value; }
-    public void setValue(double value) { this.value = value; }
+    public String getValue() { return value; }
+    public void setValue(String value) { this.value = value; }
 
     public boolean isExecuted() { return executed; }
     public void setExecuted(boolean executed) { this.executed = executed; }
