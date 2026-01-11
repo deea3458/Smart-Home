@@ -12,7 +12,6 @@ public interface SensorRepository extends JpaRepository<SensorReading, Long> {
 
     List<SensorReading> findTop10ByOrderByTimestampDesc();
 
-    //finds all readings for a specific device
-    List<SensorReading> findByDeviceId(String deviceId, Pageable pageable);
+    List<SensorReading> findByDeviceUId(String deviceUId, Pageable pageable);
 
 }

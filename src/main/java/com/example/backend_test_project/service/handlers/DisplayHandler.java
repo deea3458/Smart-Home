@@ -7,15 +7,19 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class DisplayHandler implements ActuatorHandler {
+
     @Override
     public String getActuatorType() {
+
         return "display";
+
     }
 
     @Override
-    public void handle(ActuatorCommand command) throws Exception {
-        // Use the IP you found earlier for the ESP32
+    public void handle(ActuatorCommand command) {
+
         String url = "http://192.168.43.216/display?text=" + command.getValue().toLowerCase();
         new RestTemplate().getForObject(url, String.class);
+
     }
 }

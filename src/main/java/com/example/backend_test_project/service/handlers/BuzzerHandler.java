@@ -7,15 +7,19 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class BuzzerHandler implements ActuatorHandler {
+
     @Override
     public String getActuatorType() {
+
         return "buzzer";
+
     }
 
     @Override
     public void handle(ActuatorCommand command) throws Exception {
-        // Use the IP you found earlier for the ESP32
+
         String url = "http://192.168.43.216/buzzer?action=" + command.getValue().toLowerCase();
         new RestTemplate().getForObject(url, String.class);
+
     }
 }

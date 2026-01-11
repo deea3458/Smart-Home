@@ -11,9 +11,10 @@ public class ActuatorCommand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "device_id")
-    private String deviceId;
+    @Column(name = "device_uid")
+    private String deviceUId;
 
+    @Column(name = "actuator_type")
     private String actuator;
 
     @Column(name = "command_value")
@@ -29,8 +30,8 @@ public class ActuatorCommand {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getDeviceId() { return deviceId; }
-    public void setDeviceId(String deviceId) { this.deviceId = deviceId; }
+    public String getDeviceUId() { return deviceUId; }
+    public void setDeviceUId(String deviceId) { this.deviceUId = deviceUId; }
 
     public String getActuator() { return actuator; }
     public void setActuator(String actuator) { this.actuator = actuator; }

@@ -15,20 +15,26 @@ public class ActuatorController {
         this.actuatorService = actuatorService;
     }
 
-    @PostMapping("/{deviceId}/commands")
+    @PostMapping("/{deviceUId}/commands")
     public ResponseEntity<String> sendCommand(
-            @PathVariable String deviceId,
+            @PathVariable String deviceUId,
             @RequestBody ActuatorCommand command) {
 
-        command.setDeviceId(deviceId);
+        command.setDeviceUId(deviceUId);
 
         try {
+
             actuatorService.processCommand(command);
             return ResponseEntity.ok("Command processed for " + command.getActuator());
+
         } catch (IllegalArgumentException e) {
+
             return ResponseEntity.badRequest().body(e.getMessage());
+
         } catch (Exception e) {
+
             return ResponseEntity.internalServerError().body("Hardware error: " + e.getMessage());
+
         }
     }
 }
