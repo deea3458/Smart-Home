@@ -30,6 +30,20 @@ public class SensorController {
 
     }
 
+    @GetMapping("/{deviceId}/readings/temperature/latest")
+    public ResponseEntity<Double> getLatestTemperature(
+            @PathVariable String deviceId) {
+
+        return ResponseEntity.ok(sensorService.getLatestDeviceTemperature(deviceId));
+    }
+
+    @GetMapping("/{deviceId}/readings/humidity/latest")
+    public ResponseEntity<Double> getLatestHumidity(
+            @PathVariable String deviceId) {
+
+        return ResponseEntity.ok(sensorService.getLatestDeviceHumidity(deviceId));
+    }
+
     @GetMapping("/{deviceId}/readings")
     public List<SensorReading> getDeviceReadings(@PathVariable String deviceId, @RequestParam(defaultValue = "50") int limit) {
 

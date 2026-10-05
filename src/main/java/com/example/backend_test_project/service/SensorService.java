@@ -1,10 +1,10 @@
 package com.example.backend_test_project.service;
 
-import com.example.backend_test_project.entity.Device;
 import com.example.backend_test_project.entity.SensorReading;
 import com.example.backend_test_project.repository.DeviceRepository;
 import com.example.backend_test_project.repository.SensorRepository;
 import jakarta.transaction.Transactional;
+import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +43,36 @@ public class SensorService {
 
         return sensorRepository.findTop10ByOrderByTimestampDesc();
 
+    }
+
+    //Should later add exceptions for null values
+    public @Nullable Double getLatestDeviceTemperature(String deviceId) {
+
+        double lastTemperature = 0;
+
+        List<SensorReading> lastFiveTemp= sensorRepository.getTop5SensorReadingByDeviceUIdAndSensorTypeOrderByTimestampDesc(deviceId, "temperature");
+
+        for(SensorReading reading:lastFiveTemp) {
+
+            lastTemperature += reading.getValue();
+
+        }
+
+        return lastTemperature / 5;
+    }
+
+    public @Nullable Double getLatestDeviceHumidity(String deviceId) {
+
+        double lastHumidity = 0;
+
+        List<SensorReading> lastFiveTemp= sensorRepository.getTop5SensorReadingByDeviceUIdAndSensorTypeOrderByTimestampDesc(deviceId, "humidity");
+
+        for(SensorReading reading:lastFiveTemp) {
+
+            lastHumidity += reading.getValue();
+
+        }
+
+        return lastHumidity / 5;
     }
 }

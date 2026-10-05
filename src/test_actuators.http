@@ -1,0 +1,35 @@
+### 1. Turn LED ON (Tests saving to DB)
+POST http://localhost:8080/api/actuators/esp32_01/commands
+Content-Type: application/json
+
+{
+  "actuator": "led",
+  "value": "ON"
+}
+
+### 2. Turn Fan ON
+POST http://localhost:8080/api/actuators/esp32_01/commands
+Content-Type: application/json
+
+{
+  "actuator": "fan",
+  "value": "ON"
+}
+
+### 3. Test Buzzer (Action)
+POST http://localhost:8080/api/actuators/esp32_01/commands
+Content-Type: application/json
+
+{
+  "actuator": "buzzer",
+  "value": "beep"
+}
+
+### 4. Test Display (Text)
+POST http://localhost:8080/api/actuators/esp32_01/commands
+Content-Type: application/json
+
+{
+  "actuator": "display",
+  "value": "Hello World"
+}
